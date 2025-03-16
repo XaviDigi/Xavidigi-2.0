@@ -1,21 +1,19 @@
-import { Link, useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { gradientText } from "@/lib/utils";
 
 interface NavItem {
   name: string;
-  path: string;
+  section: string;
 }
 
 interface MobileMenuProps {
   items: NavItem[];
   isOpen: boolean;
-  onLinkClick: () => void;
+  onLinkClick: (section: string) => void;
+  activeSection: string;
 }
 
-export default function MobileMenu({ items, isOpen, onLinkClick }: MobileMenuProps) {
-  const [location] = useLocation();
-  
+export default function MobileMenu({ items, isOpen, onLinkClick, activeSection }: MobileMenuProps) {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -29,17 +27,15 @@ export default function MobileMenu({ items, isOpen, onLinkClick }: MobileMenuPro
           <div className="container mx-auto px-4 py-3">
             <ul className="space-y-4">
               {items.map((item) => (
-                <li key={item.path}>
-                  <Link href={item.path}>
-                    <span 
-                      className={`block py-2 transition duration-300 cursor-pointer ${
-                        location === item.path ? "text-gradient font-bold" : "text-white hover:text-cyan-300"
-                      }`}
-                      onClick={onLinkClick}
-                    >
-                      {item.name}
-                    </span>
-                  </Link>
+                <li key={item.section}>
+                  <button 
+                    className={`block py-2 w-full text-left transition duration-300 cursor-pointer ${
+                      activeSection === item.section ? "text-gradient font-bold" : "text-white hover:text-cyan-300"
+                    }`}
+                    onClick={() => onLinkClick(item.section)}
+                  >
+                    {item.name}
+                  </button>
                 </li>
               ))}
             </ul>

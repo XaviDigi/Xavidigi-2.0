@@ -1,18 +1,18 @@
 import { ReactNode } from "react";
 import MainNavigation from "@/components/MainNavigation";
 import SocialLinks from "@/components/SocialLinks";
-import { Link } from "wouter";
 import Logo from "@/components/Logo";
 import { gradientText } from "@/lib/utils";
 
 interface MainLayoutProps {
   children: ReactNode;
+  onNavigate?: (section: string) => void;
 }
 
-export default function MainLayout({ children }: MainLayoutProps) {
+export default function MainLayout({ children, onNavigate }: MainLayoutProps) {
   return (
     <div className="flex flex-col min-h-screen bg-black">
-      <MainNavigation />
+      <MainNavigation onNavigate={onNavigate} />
       <main className="flex-grow pt-16">{children}</main>
       <footer className="bg-zinc-900/80 border-t border-cyan-500/20 text-white py-12">
         <div className="container mx-auto px-4 md:px-6">
@@ -25,21 +25,36 @@ export default function MainLayout({ children }: MainLayoutProps) {
             </div>
             
             <div className="flex flex-wrap justify-center gap-6">
-              <Link href="/">
-                <span className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">Home</span>
-              </Link>
-              <Link href="/about">
-                <span className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">About</span>
-              </Link>
-              <Link href="/services">
-                <span className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">Services</span>
-              </Link>
-              <Link href="/portfolio">
-                <span className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">Portfolio</span>
-              </Link>
-              <Link href="/contact">
-                <span className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">Contact</span>
-              </Link>
+              <button 
+                onClick={() => onNavigate?.('home-section')}
+                className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer"
+              >
+                Home
+              </button>
+              <button 
+                onClick={() => onNavigate?.('about-section')}
+                className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer"
+              >
+                About
+              </button>
+              <button 
+                onClick={() => onNavigate?.('services-section')}
+                className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer"
+              >
+                Services
+              </button>
+              <button 
+                onClick={() => onNavigate?.('portfolio-section')}
+                className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer"
+              >
+                Portfolio
+              </button>
+              <button 
+                onClick={() => onNavigate?.('contact-section')}
+                className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer"
+              >
+                Contact
+              </button>
             </div>
             
             <div className="mt-6 md:mt-0">

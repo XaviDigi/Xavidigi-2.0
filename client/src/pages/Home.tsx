@@ -1,11 +1,14 @@
 import { motion } from "framer-motion";
-import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { gradientText, gradientBg, glowEffect } from "@/lib/utils";
 import ServiceCard from "@/components/ServiceCard";
 import { services } from "@/data/services";
 
-export default function Home() {
+interface HomeProps {
+  onServiceClick?: (serviceId: string) => void;
+}
+
+export default function Home({ onServiceClick }: HomeProps) {
   return (
     <>
       <section className="pt-24 pb-16 md:pt-32 md:pb-24 relative">
@@ -25,23 +28,31 @@ export default function Home() {
                 Xavier's digital studio specializing in custom websites, Shopify stores, social media automation, and digital content that drives results.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link href="/portfolio">
-                  <Button 
-                    size="lg" 
-                    className={`${gradientBg} border border-white/10 text-white hover:shadow-glow hover:scale-105 transition-all duration-300 shadow-lg`}
-                  >
-                    View My Work
-                  </Button>
-                </Link>
-                <Link href="/contact">
-                  <Button 
-                    size="lg" 
-                    variant="outline" 
-                    className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:text-white hover:border-cyan-400 shadow-lg"
-                  >
-                    Let's Talk
-                  </Button>
-                </Link>
+                <Button 
+                  size="lg" 
+                  className={`${gradientBg} border border-white/10 text-white hover:shadow-glow hover:scale-105 transition-all duration-300 shadow-lg`}
+                  onClick={() => {
+                    const portfolioSection = document.getElementById('portfolio-section');
+                    if (portfolioSection) {
+                      portfolioSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                >
+                  View My Work
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:text-white hover:border-cyan-400 shadow-lg"
+                  onClick={() => {
+                    const contactSection = document.getElementById('contact-section');
+                    if (contactSection) {
+                      contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                >
+                  Let's Talk
+                </Button>
               </div>
             </motion.div>
             
@@ -84,12 +95,17 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.filter(service => service.featured).map((service, index) => (
-              <ServiceCard 
-                key={service.id} 
-                service={service} 
-                index={index} 
-                variant="featured"
-              />
+              <div 
+                key={service.id}
+                onClick={() => onServiceClick?.(service.id)} 
+                className="cursor-pointer"
+              >
+                <ServiceCard 
+                  service={service} 
+                  index={index} 
+                  variant="featured"
+                />
+              </div>
             ))}
           </div>
         </div>

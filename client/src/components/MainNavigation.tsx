@@ -1,30 +1,54 @@
-import { Link, useLocation } from "wouter";
 import { useState, useEffect } from "react";
 import Logo from "./Logo";
 import MobileMenu from "./MobileMenu";
 import { gradientBg } from "@/lib/utils";
 
 const NAV_ITEMS = [
-  { name: "Home", path: "/" },
-  { name: "About", path: "/about" },
-  { name: "Services", path: "/services" },
-  { name: "Portfolio", path: "/portfolio" },
-  { name: "Contact", path: "/contact" },
+  { name: "Home", section: "home-section" },
+  { name: "About", section: "about-section" },
+  { name: "Services", section: "services-section" },
+  { name: "Portfolio", section: "portfolio-section" },
+  { name: "Contact", section: "contact-section" },
 ];
 
-export default function MainNavigation() {
+interface MainNavigationProps {
+  onNavigate?: (section: string) => void;
+}
+
+export default function MainNavigation({ onNavigate }: MainNavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [location] = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home-section");
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
+      
+      // Determine active section based on scroll position
+      const sections = NAV_ITEMS.map(item => item.section);
+      
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleNavClick = (section: string) => {
+    if (onNavigate) {
+      onNavigate(section);
+    }
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <header 
@@ -41,21 +65,20 @@ export default function MainNavigation() {
         <nav className="hidden md:block">
           <ul className="flex space-x-8">
             {NAV_ITEMS.map((item) => (
-              <li key={item.path}>
-                <Link href={item.path}>
-                  <span 
-                    className={`relative font-medium transition duration-300 cursor-pointer
-                    ${location === item.path 
-                      ? "text-gradient font-bold" 
-                      : "text-white hover:text-cyan-300"
-                    }`}
-                  >
-                    {item.name}
-                    {location === item.path && (
-                      <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-600"></div>
-                    )}
-                  </span>
-                </Link>
+              <li key={item.section}>
+                <button 
+                  onClick={() => handleNavClick(item.section)}
+                  className={`relative font-medium transition duration-300 cursor-pointer
+                  ${activeSection === item.section 
+                    ? "text-gradient font-bold" 
+                    : "text-white hover:text-cyan-300"
+                  }`}
+                >
+                  {item.name}
+                  {activeSection === item.section && (
+                    <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-600"></div>
+                  )}
+                </button>
               </li>
             ))}
           </ul>
@@ -95,9 +118,10 @@ export default function MainNavigation() {
       
       {/* Mobile Navigation Menu */}
       <MobileMenu 
-        items={NAV_ITEMS} 
+        items={NAV_ITEMS.map(item => ({ name: item.name, section: item.section }))} 
         isOpen={isMobileMenuOpen} 
-        onLinkClick={() => setIsMobileMenuOpen(false)} 
+        onLinkClick={handleNavClick} 
+        activeSection={activeSection}
       />
     </header>
   );
