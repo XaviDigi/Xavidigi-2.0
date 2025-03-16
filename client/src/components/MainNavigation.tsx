@@ -2,6 +2,7 @@ import { Link, useLocation } from "wouter";
 import { useState, useEffect } from "react";
 import Logo from "./Logo";
 import MobileMenu from "./MobileMenu";
+import { gradientBg } from "@/lib/utils";
 
 const NAV_ITEMS = [
   { name: "Home", path: "/" },
@@ -27,8 +28,10 @@ export default function MainNavigation() {
 
   return (
     <header 
-      className={`fixed w-full bg-white z-50 transition-shadow duration-300 ${
-        isScrolled ? "shadow-md" : ""
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        isScrolled 
+          ? "bg-black/80 backdrop-blur-md border-b border-cyan-500/20" 
+          : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center py-4">
@@ -40,13 +43,18 @@ export default function MainNavigation() {
             {NAV_ITEMS.map((item) => (
               <li key={item.path}>
                 <Link href={item.path}>
-                  <a 
-                    className={`nav-link relative font-medium hover:text-primary transition duration-300 ${
-                      location === item.path ? "text-primary" : ""
+                  <div 
+                    className={`relative font-medium transition duration-300 cursor-pointer
+                    ${location === item.path 
+                      ? "text-gradient font-bold" 
+                      : "text-white hover:text-cyan-300"
                     }`}
                   >
                     {item.name}
-                  </a>
+                    {location === item.path && (
+                      <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-600"></div>
+                    )}
+                  </div>
                 </Link>
               </li>
             ))}
@@ -55,7 +63,7 @@ export default function MainNavigation() {
         
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden text-dark focus:outline-none"
+          className="md:hidden text-white focus:outline-none"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle mobile menu"
         >

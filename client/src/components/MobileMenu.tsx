@@ -1,5 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
+import { gradientText } from "@/lib/utils";
 
 interface NavItem {
   name: string;
@@ -19,7 +20,7 @@ export default function MobileMenu({ items, isOpen, onLinkClick }: MobileMenuPro
     <AnimatePresence>
       {isOpen && (
         <motion.div 
-          className="md:hidden bg-white w-full border-t border-gray-100"
+          className="md:hidden bg-black/90 backdrop-blur-md w-full border-t border-cyan-500/20"
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
@@ -30,14 +31,14 @@ export default function MobileMenu({ items, isOpen, onLinkClick }: MobileMenuPro
               {items.map((item) => (
                 <li key={item.path}>
                   <Link href={item.path}>
-                    <a 
-                      className={`block py-2 hover:text-primary transition duration-300 ${
-                        location === item.path ? "text-primary font-medium" : ""
+                    <div 
+                      className={`block py-2 transition duration-300 cursor-pointer ${
+                        location === item.path ? "text-gradient font-bold" : "text-white hover:text-cyan-300"
                       }`}
                       onClick={onLinkClick}
                     >
                       {item.name}
-                    </a>
+                    </div>
                   </Link>
                 </li>
               ))}
