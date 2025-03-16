@@ -4,6 +4,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import PortfolioItem from "@/components/PortfolioItem";
 import { portfolioItems } from "@/data/portfolio";
+import { gradientText, gradientBg, glowEffect } from "@/lib/utils";
 
 export default function Portfolio() {
   const [filter, setFilter] = useState("All");
@@ -15,8 +16,9 @@ export default function Portfolio() {
     : portfolioItems.filter(item => item.category === filter);
 
   return (
-    <section className="py-16 md:py-24 bg-white">
-      <div className="container mx-auto px-4 md:px-6">
+    <section className="py-24 relative">
+      <div className="absolute inset-0 bg-grid-pattern opacity-30 z-0"></div>
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
@@ -24,10 +26,11 @@ export default function Portfolio() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">My Portfolio</h2>
-          <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
-          <p className="text-gray-600 max-w-3xl mx-auto">
-            A selection of my recent work across various industries and platforms.
+          <p className="text-cyan-400 mb-2 tracking-wider uppercase font-medium">Featured Work</p>
+          <h2 className={`text-3xl md:text-4xl font-bold mb-6 ${gradientText}`}>My Portfolio</h2>
+          <div className="w-20 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 mx-auto mb-6"></div>
+          <p className="text-gray-300 max-w-3xl mx-auto">
+            A selection of my recent work across various industries and platforms
           </p>
         </motion.div>
         
@@ -44,8 +47,8 @@ export default function Portfolio() {
               key={category}
               className={`m-2 px-4 py-2 rounded-md transition duration-300 ${
                 filter === category
-                  ? "bg-primary text-white"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                  ? `${gradientBg} text-white`
+                  : "bg-zinc-900/50 text-gray-300 hover:bg-zinc-800 border border-cyan-500/20"
               }`}
               onClick={() => setFilter(category)}
             >
@@ -62,14 +65,17 @@ export default function Portfolio() {
         </div>
         
         <motion.div
-          className="text-center mt-10"
+          className="text-center mt-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
           viewport={{ once: true }}
         >
           <Link href="/contact">
-            <Button size="lg" className="shadow-md">
+            <Button 
+              size="lg" 
+              className={`${gradientBg} border border-white/10 text-white hover:shadow-glow hover:scale-105 transition-all duration-300 shadow-lg`}
+            >
               Let's Work Together
             </Button>
           </Link>

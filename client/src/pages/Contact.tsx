@@ -2,11 +2,13 @@ import { motion } from "framer-motion";
 import { ContactForm } from "@/components/ui/contact-form";
 import SocialLinks from "@/components/SocialLinks";
 import { MailIcon, PhoneIcon, MapPinIcon } from "lucide-react";
+import { gradientText, gradientBg, glowEffect } from "@/lib/utils";
 
 export default function Contact() {
   return (
-    <section className="py-16 md:py-24 bg-gray-50">
-      <div className="container mx-auto px-4 md:px-6">
+    <section className="py-24 relative">
+      <div className="absolute inset-0 bg-grid-pattern opacity-30 z-0"></div>
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
@@ -14,9 +16,10 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">Get In Touch</h2>
-          <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
-          <p className="text-gray-600 max-w-3xl mx-auto">
+          <p className="text-cyan-400 mb-2 tracking-wider uppercase font-medium">Ready To Chat</p>
+          <h2 className={`text-3xl md:text-4xl font-bold mb-6 ${gradientText}`}>Get In Touch</h2>
+          <div className="w-20 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 mx-auto mb-6"></div>
+          <p className="text-gray-300 max-w-3xl mx-auto">
             Have a project in mind or want to discuss how I can help your business? Let's talk!
           </p>
         </motion.div>
@@ -30,8 +33,12 @@ export default function Contact() {
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <div className="bg-white rounded-lg shadow-md p-8">
-              <ContactForm />
+            <div className="relative group">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/50 to-purple-600/50 rounded-lg blur opacity-75"></div>
+              <div className="relative futuristic-card p-8 overflow-hidden">
+                <div className={`${gradientBg} h-1 absolute top-0 left-0 right-0`}></div>
+                <ContactForm />
+              </div>
             </div>
           </motion.div>
           
@@ -43,53 +50,57 @@ export default function Contact() {
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <div className="bg-white rounded-lg shadow-md p-8 h-full">
-              <h3 className="text-2xl font-heading font-semibold mb-6">Contact Information</h3>
-              
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                    <MailIcon className="text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-medium mb-1">Email</h4>
-                    <a 
-                      href="mailto:hello@johnsmith.dev" 
-                      className="text-gray-600 hover:text-primary transition duration-300"
-                    >
-                      hello@johnsmith.dev
-                    </a>
-                  </div>
-                </div>
+            <div className="relative group">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/30 to-purple-600/30 rounded-lg blur opacity-75"></div>
+              <div className="relative futuristic-card p-8 h-full overflow-hidden">
+                <div className={`${gradientBg} h-1 absolute top-0 left-0 right-0`}></div>
+                <h3 className={`text-2xl font-bold mb-6 ${gradientText}`}>Contact Info</h3>
                 
-                <div className="flex items-start">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                    <PhoneIcon className="text-primary" />
+                <div className="space-y-6">
+                  <div className="flex items-start group">
+                    <div className="w-12 h-12 bg-zinc-900 border border-cyan-500/30 rounded-lg flex items-center justify-center mr-4 group-hover:border-cyan-400 transition-colors duration-300">
+                      <MailIcon className="text-cyan-400" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-medium mb-1 text-white">Email</h4>
+                      <a 
+                        href="mailto:hello@xavidigi.com" 
+                        className="text-gray-400 hover:text-cyan-400 transition duration-300"
+                      >
+                        hello@xavidigi.com
+                      </a>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="text-lg font-medium mb-1">Phone</h4>
-                    <a 
-                      href="tel:+1234567890" 
-                      className="text-gray-600 hover:text-primary transition duration-300"
-                    >
-                      +1 (234) 567-890
-                    </a>
+                  
+                  <div className="flex items-start group">
+                    <div className="w-12 h-12 bg-zinc-900 border border-cyan-500/30 rounded-lg flex items-center justify-center mr-4 group-hover:border-cyan-400 transition-colors duration-300">
+                      <PhoneIcon className="text-cyan-400" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-medium mb-1 text-white">Phone</h4>
+                      <a 
+                        href="tel:+1234567890" 
+                        className="text-gray-400 hover:text-cyan-400 transition duration-300"
+                      >
+                        +1 (234) 567-890
+                      </a>
+                    </div>
                   </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                    <MapPinIcon className="text-primary" />
+                  
+                  <div className="flex items-start group">
+                    <div className="w-12 h-12 bg-zinc-900 border border-cyan-500/30 rounded-lg flex items-center justify-center mr-4 group-hover:border-cyan-400 transition-colors duration-300">
+                      <MapPinIcon className="text-cyan-400" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-medium mb-1 text-white">Location</h4>
+                      <p className="text-gray-400">San Francisco, California</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="text-lg font-medium mb-1">Location</h4>
-                    <p className="text-gray-600">San Francisco, California</p>
+                  
+                  <div className="pt-6 border-t border-zinc-800">
+                    <h4 className="text-lg font-medium mb-6 text-white">Connect With Me</h4>
+                    <SocialLinks variant="contact" />
                   </div>
-                </div>
-                
-                <div className="pt-6">
-                  <h4 className="text-lg font-medium mb-4">Connect with me</h4>
-                  <SocialLinks variant="contact" />
                 </div>
               </div>
             </div>
