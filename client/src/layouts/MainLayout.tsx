@@ -26,19 +26,19 @@ export default function MainLayout({ children }: MainLayoutProps) {
             
             <div className="flex flex-wrap justify-center gap-6">
               <Link href="/">
-                <div className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">Home</div>
+                <a className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">Home</a>
               </Link>
               <Link href="/about">
-                <div className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">About</div>
+                <a className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">About</a>
               </Link>
               <Link href="/services">
-                <div className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">Services</div>
+                <a className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">Services</a>
               </Link>
               <Link href="/portfolio">
-                <div className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">Portfolio</div>
+                <a className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">Portfolio</a>
               </Link>
               <Link href="/contact">
-                <div className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">Contact</div>
+                <a className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">Contact</a>
               </Link>
             </div>
             
@@ -48,7 +48,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
           </div>
           
           <div className="border-t border-zinc-800 mt-8 pt-8 text-center text-sm">
-            <p className="text-gray-500">&copy; {new Date().getFullYear()} <span className="text-gradient">XaviDigi</span>. All rights reserved.</p>
+            <p className="text-gray-500">&copy; {new Date().getFullYear()} <span className={gradientText}>XaviDigi</span>. All rights reserved.</p>
           </div>
         </div>
       </footer>

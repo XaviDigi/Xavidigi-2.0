@@ -9,6 +9,19 @@ import Services from "@/pages/Services";
 import Portfolio from "@/pages/Portfolio";
 import Contact from "@/pages/Contact";
 import MainLayout from "@/layouts/MainLayout";
+import { services } from "@/data/services";
+
+function ServiceDetail({ params }: { params: { id: string } }) {
+  const service = services.find((s) => s.id === params.id);
+  
+  if (!service) {
+    return <NotFound />;
+  }
+  
+  return (
+    <Services />
+  );
+}
 
 function Router() {
   return (
@@ -16,6 +29,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
       <Route path="/services" component={Services} />
+      <Route path="/services/:id" component={ServiceDetail} />
       <Route path="/portfolio" component={Portfolio} />
       <Route path="/contact" component={Contact} />
       <Route component={NotFound} />
