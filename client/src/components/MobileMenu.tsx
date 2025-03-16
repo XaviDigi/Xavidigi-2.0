@@ -31,14 +31,14 @@ export default function MobileMenu({ items, isOpen, onLinkClick }: MobileMenuPro
               {items.map((item) => (
                 <li key={item.path}>
                   <Link href={item.path}>
-                    <div 
+                    <span 
                       className={`block py-2 transition duration-300 cursor-pointer ${
                         location === item.path ? "text-gradient font-bold" : "text-white hover:text-cyan-300"
                       }`}
                       onClick={onLinkClick}
                     >
                       {item.name}
-                    </div>
+                    </span>
                   </Link>
                 </li>
               ))}

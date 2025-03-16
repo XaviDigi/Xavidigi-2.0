@@ -43,7 +43,7 @@ export default function MainNavigation() {
             {NAV_ITEMS.map((item) => (
               <li key={item.path}>
                 <Link href={item.path}>
-                  <div 
+                  <span 
                     className={`relative font-medium transition duration-300 cursor-pointer
                     ${location === item.path 
                       ? "text-gradient font-bold" 
@@ -54,7 +54,7 @@ export default function MainNavigation() {
                     {location === item.path && (
                       <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-600"></div>
                     )}
-                  </div>
+                  </span>
                 </Link>
               </li>
             ))}

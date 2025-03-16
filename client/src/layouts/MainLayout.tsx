@@ -26,19 +26,19 @@ export default function MainLayout({ children }: MainLayoutProps) {
             
             <div className="flex flex-wrap justify-center gap-6">
               <Link href="/">
-                <a className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">Home</a>
+                <span className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">Home</span>
               </Link>
               <Link href="/about">
-                <a className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">About</a>
+                <span className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">About</span>
               </Link>
               <Link href="/services">
-                <a className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">Services</a>
+                <span className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">Services</span>
               </Link>
               <Link href="/portfolio">
-                <a className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">Portfolio</a>
+                <span className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">Portfolio</span>
               </Link>
               <Link href="/contact">
-                <a className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">Contact</a>
+                <span className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer">Contact</span>
               </Link>
             </div>
             
