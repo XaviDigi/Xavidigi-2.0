@@ -49,11 +49,11 @@ interface ServicesProps {
 export default function Services({ selectedServiceId, onClose }: ServicesProps) {
   const [location] = useLocation();
   const [selectedService, setSelectedService] = useState<typeof services[0] | null>(null);
-  
+
   useEffect(() => {
     const params = new URLSearchParams(location.split('?')[1]);
     const serviceId = params.get('id') || selectedServiceId;
-    
+
     if (serviceId) {
       const service = services.find(s => s.id === serviceId);
       if (service) {
@@ -63,7 +63,7 @@ export default function Services({ selectedServiceId, onClose }: ServicesProps) 
       setSelectedService(null);
     }
   }, [selectedServiceId, location]);
-  
+
   const processSteps = [
     {
       number: "01",
@@ -189,7 +189,7 @@ export default function Services({ selectedServiceId, onClose }: ServicesProps) 
               Premium digital solutions to elevate your brand and online presence
             </p>
           </motion.div>
-          
+
           <AnimatePresence>
             {selectedService ? (
               <motion.div
@@ -205,22 +205,22 @@ export default function Services({ selectedServiceId, onClose }: ServicesProps) 
                 >
                   <X className="h-5 w-5 text-cyan-400" />
                 </button>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="relative">
                     <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 to-purple-600/20 rounded-lg blur-lg opacity-75"></div>
                     <div className="relative futuristic-card p-8 overflow-hidden h-full">
                       <div className={`${gradientBg} h-1 absolute top-0 left-0 right-0`}></div>
-                      
+
                       <div className="flex items-center mb-6">
                         <selectedService.icon className="h-12 w-12 text-cyan-400 mr-4" />
                         <h3 className="text-2xl font-bold text-white">{selectedService.title}</h3>
                       </div>
-                      
+
                       <p className="text-gray-300 mb-8">
                         {getServiceDetail(selectedService.id).detailedDescription}
                       </p>
-                      
+
                       <h4 className="text-xl font-bold text-gradient mb-4">Features & Benefits</h4>
                       <ul className="space-y-3 mb-8">
                         {getServiceDetail(selectedService.id).features.map((feature, idx) => (
@@ -230,7 +230,7 @@ export default function Services({ selectedServiceId, onClose }: ServicesProps) 
                           </li>
                         ))}
                       </ul>
-                      
+
                       <Button 
                         className={`${gradientBg} mt-4 border border-white/10 text-white hover:shadow-glow hover:scale-105 transition-all duration-300 shadow-lg`}
                         onClick={() => {
@@ -244,12 +244,12 @@ export default function Services({ selectedServiceId, onClose }: ServicesProps) 
                       </Button>
                     </div>
                   </div>
-                  
+
                   <div className="relative">
                     <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 to-purple-600/20 rounded-lg blur-lg opacity-75"></div>
                     <div className="relative futuristic-card p-8 overflow-hidden h-full">
                       <div className={`${gradientBg} h-1 absolute top-0 left-0 right-0`}></div>
-                      
+
                       <h3 className="text-2xl font-bold text-gradient mb-6">Case Study</h3>
                       <div className="mb-8">
                         <h4 className="text-xl font-bold text-white mb-3">
@@ -259,7 +259,7 @@ export default function Services({ selectedServiceId, onClose }: ServicesProps) 
                           {getServiceDetail(selectedService.id).caseStudy.description}
                         </p>
                       </div>
-                      
+
                       <h4 className="text-xl font-bold text-gradient mb-4">The Process</h4>
                       <div className="space-y-6">
                         {processSteps.map((step, idx) => (
@@ -288,7 +288,7 @@ export default function Services({ selectedServiceId, onClose }: ServicesProps) 
           </AnimatePresence>
         </div>
       </section>
-      
+
       {!selectedService && (
         <section className="py-20 relative bg-zinc-900/70">
           <div className="container mx-auto px-4 md:px-6">
@@ -304,7 +304,7 @@ export default function Services({ selectedServiceId, onClose }: ServicesProps) 
                 <p className="text-gray-300 mb-8 leading-relaxed">
                   My streamlined process ensures your project moves efficiently from concept to completion. I focus on clear communication, strategic planning, and meticulous execution to deliver exceptional results.
                 </p>
-                
+
                 <div className="grid grid-cols-1 gap-8">
                   {processSteps.map((step, index) => (
                     <motion.div
@@ -323,7 +323,7 @@ export default function Services({ selectedServiceId, onClose }: ServicesProps) 
                     </motion.div>
                   ))}
                 </div>
-                
+
                 <div className="mt-8">
                   <button 
                     className="group inline-flex items-center text-cyan-400 font-medium cursor-pointer"
@@ -339,7 +339,7 @@ export default function Services({ selectedServiceId, onClose }: ServicesProps) 
                   </button>
                 </div>
               </motion.div>
-              
+
               <motion.div
                 className="relative"
                 initial={{ opacity: 0, x: 20 }}
@@ -351,28 +351,28 @@ export default function Services({ selectedServiceId, onClose }: ServicesProps) 
                 <div className="relative futuristic-card p-8 overflow-hidden">
                   <div className={`${gradientBg} h-1 absolute top-0 left-0 right-0`}></div>
                   <h3 className="text-2xl font-bold mb-6 text-gradient">Why Work With Me</h3>
-                  
+
                   <div className="space-y-4">
                     <div className="futuristic-card p-4 flex items-center">
                       <div className="w-3 h-3 rounded-full bg-cyan-500 mr-4"></div>
                       <p className="text-gray-300">Personalized approach to each project</p>
                     </div>
-                    
+
                     <div className="futuristic-card p-4 flex items-center">
                       <div className="w-3 h-3 rounded-full bg-cyan-500 mr-4"></div>
                       <p className="text-gray-300">Cutting-edge technology and design</p>
                     </div>
-                    
+
                     <div className="futuristic-card p-4 flex items-center">
                       <div className="w-3 h-3 rounded-full bg-cyan-500 mr-4"></div>
                       <p className="text-gray-300">Focus on results and measurable outcomes</p>
                     </div>
-                    
+
                     <div className="futuristic-card p-4 flex items-center">
                       <div className="w-3 h-3 rounded-full bg-cyan-500 mr-4"></div>
                       <p className="text-gray-300">Continuous support and communication</p>
                     </div>
-                    
+
                     <div className="futuristic-card p-4 flex items-center">
                       <div className="w-3 h-3 rounded-full bg-cyan-500 mr-4"></div>
                       <p className="text-gray-300">Adaptable to changing requirements</p>
@@ -403,7 +403,7 @@ export default function Services({ selectedServiceId, onClose }: ServicesProps) 
               Digital innovator focused on creating captivating web experiences
             </p>
           </motion.div>
-          
+
           <div className="flex flex-col md:flex-row items-center md:items-start gap-12">
             <motion.div
               className="w-full md:w-1/3 relative"
@@ -425,7 +425,7 @@ export default function Services({ selectedServiceId, onClose }: ServicesProps) 
                 </div>
               </div>
             </motion.div>
-            
+
             <div className="w-full md:w-2/3">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -443,7 +443,7 @@ export default function Services({ selectedServiceId, onClose }: ServicesProps) 
                   I specialize in web creation, Shopify store development, social media automation, and digital content creation. My background in both design and development allows me to bridge the gap between aesthetics and functionality, creating digital experiences that engage users and convert visitors into customers.
                 </p>
               </motion.div>
-              
+
               <motion.div
                 className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 mt-8"
                 initial={{ opacity: 0, y: 20 }}
@@ -463,7 +463,7 @@ export default function Services({ selectedServiceId, onClose }: ServicesProps) 
                   </div>
                 ))}
               </motion.div>
-              
+
               <motion.div
                 className="flex flex-wrap gap-4"
                 initial={{ opacity: 0, y: 20 }}
