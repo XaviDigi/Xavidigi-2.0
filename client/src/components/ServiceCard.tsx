@@ -1,6 +1,7 @@
+
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
-import { Link, useLocation } from "wouter"; // Added useLocation import
+import { Link, useLocation } from "wouter";
 import { gradientBg, glowEffect } from "@/lib/utils";
 
 export interface ServiceProps {
@@ -18,7 +19,7 @@ interface ServiceCardProps {
 }
 
 export default function ServiceCard({ service, index, variant = "grid" }: ServiceCardProps) {
-  const [, navigate] = useLocation(); // Added useLocation hook
+  const [, navigate] = useLocation();
 
   if (variant === "featured") {
     return (
@@ -48,7 +49,7 @@ export default function ServiceCard({ service, index, variant = "grid" }: Servic
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
-      >
+    >
       <div className={`${gradientBg} h-1`}></div>
       <div className="p-6">
         <div className="w-14 h-14 bg-black/30 rounded-md flex items-center justify-center mb-4 border border-cyan-500/30">
@@ -57,24 +58,23 @@ export default function ServiceCard({ service, index, variant = "grid" }: Servic
         <h3 className="text-xl font-bold text-gradient mb-3">{service.title}</h3>
         <p className="text-gray-300 mb-4 text-sm">{service.description}</p>
         <div 
-          onClick={() => navigate(`/services/${service.id}`)}
+          onClick={() => navigate(`/services?id=${service.id}`)}
           className="text-cyan-400 font-medium hover:text-purple-400 transition duration-300 flex items-center cursor-pointer"
         >
           Learn More
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 ml-2"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </div>
-        </Link>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 ml-2"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </div>
       </div>
     </motion.div>
   );
