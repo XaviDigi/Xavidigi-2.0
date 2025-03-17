@@ -173,13 +173,13 @@ export default function AIAgentsSection() {
             size="lg" 
             className={`${gradientBg} mt-8 border border-white/10 text-white hover:shadow-glow hover:scale-105 transition-all duration-300 shadow-lg`}
             onClick={() => {
-              const servicesSection = document.getElementById('services-section');
-              if (servicesSection) {
-                servicesSection.scrollIntoView({ behavior: 'smooth' });
+              const contactSection = document.getElementById('contact-section');
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
               }
             }}
           >
-            Explore AI Agent Services
+            Get Started
           </Button>
           <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
             Each AI agent is custom-built to integrate seamlessly with your existing systems and workflows, creating a tailored solution that addresses your specific business needs.

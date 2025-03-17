@@ -124,23 +124,31 @@ export default function About() {
               transition={{ duration: 0.5, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <Link href="/services">
-                <Button 
-                  size="lg" 
-                  className={`${gradientBg} border border-white/10 text-white hover:shadow-glow hover:scale-105 transition-all duration-300 shadow-lg`}
-                >
-                  View My Services
-                </Button>
-              </Link>
-              <Link href="/contact">
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:text-white hover:border-cyan-400 shadow-lg"
-                >
-                  Get In Touch
-                </Button>
-              </Link>
+              <Button 
+                size="lg" 
+                className={`${gradientBg} border border-white/10 text-white hover:shadow-glow hover:scale-105 transition-all duration-300 shadow-lg`}
+                onClick={() => {
+                  const servicesSection = document.getElementById('services-section');
+                  if (servicesSection) {
+                    servicesSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
+                View My Services
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:text-white hover:border-cyan-400 shadow-lg"
+                onClick={() => {
+                  const contactSection = document.getElementById('contact-section');
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
+                Get In Touch
+              </Button>
             </motion.div>
           </div>
         </div>

@@ -3,13 +3,26 @@ import { Button } from "@/components/ui/button";
 import { gradientText, gradientBg, glowEffect } from "@/lib/utils";
 import ServiceCard from "@/components/ServiceCard";
 import AIAgentsSection from "@/components/AIAgentsSection";
+import PortfolioCarousel from "@/components/PortfolioCarousel";
 import { services } from "@/data/services";
+import { useState } from "react";
 
 interface HomeProps {
   onServiceClick?: (serviceId: string) => void;
 }
 
 export default function Home({ onServiceClick }: HomeProps) {
+  const [showAIDetails, setShowAIDetails] = useState(false);
+  
+  const handleLearnMoreClick = () => {
+    setShowAIDetails(true);
+    // Also scroll to the AI section
+    const aiSection = document.getElementById('ai-section');
+    if (aiSection) {
+      aiSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+  
   return (
     <>
       <section className="pt-24 pb-16 md:pt-32 md:pb-24 relative">
@@ -99,7 +112,13 @@ export default function Home({ onServiceClick }: HomeProps) {
             {services.filter(service => service.featured).map((service, index) => (
               <div 
                 key={service.id}
-                onClick={() => onServiceClick?.(service.id)} 
+                onClick={() => {
+                  if (service.id === 'ai-agents') {
+                    handleLearnMoreClick();
+                  } else {
+                    onServiceClick?.(service.id);
+                  }
+                }} 
                 className="cursor-pointer"
               >
                 <ServiceCard 
@@ -113,7 +132,13 @@ export default function Home({ onServiceClick }: HomeProps) {
         </div>
       </section>
 
-      <AIAgentsSection />
+      <div id="ai-section">
+        <AIAgentsSection />
+      </div>
+
+      <div id="portfolio-carousel-section">
+        <PortfolioCarousel />
+      </div>
     </>
   );
 }
