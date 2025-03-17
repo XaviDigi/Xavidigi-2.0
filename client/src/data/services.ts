@@ -2,7 +2,8 @@ import {
   MonitorIcon, 
   ShoppingCartIcon, 
   ShareIcon, 
-  ImageIcon 
+  ImageIcon,
+  BotIcon
 } from "lucide-react";
 import { ServiceProps } from "@/components/ServiceCard";
 
@@ -29,10 +30,17 @@ export const services: ServiceProps[] = [
     featured: true
   },
   {
+    id: "ai-agents",
+    icon: BotIcon,
+    title: "AI Agent Creation",
+    description: "Custom AI agents designed to automate tasks, enhance customer support, and provide personalized experiences for your business and customers.",
+    featured: true
+  },
+  {
     id: "photo-video",
     icon: ImageIcon,
     title: "Photo & Video Editing",
     description: "Professional editing services for photos and videos, including color correction, retouching, and post-production for content creation and marketing.",
-    featured: true
+    featured: false
   }
 ];

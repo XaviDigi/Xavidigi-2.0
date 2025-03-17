@@ -95,6 +95,21 @@ export default function Services({ selectedServiceId, onClose }: ServicesProps) 
         description: "Created an automated social media system for a restaurant chain with 12 locations, increasing engagement by 120% while reducing management time by 70%."
       }
     },
+    "ai-agents": {
+      detailedDescription: "I specialize in creating custom AI agents that can automate tasks, enhance customer interactions, and provide personalized experiences. Using advanced AI models and integration techniques, I build intelligent assistants that work across various platforms to improve efficiency and user engagement.",
+      features: [
+        "Customer service chatbots with natural language understanding",
+        "Lead generation and qualification agents",
+        "Content creation assistants for blogs and social media",
+        "Data analysis and insight generation agents",
+        "Personalized recommendation systems",
+        "Process automation for repetitive business tasks"
+      ],
+      caseStudy: {
+        title: "E-commerce Customer Service Agent",
+        description: "Developed an AI customer service agent for an online retailer that handled 78% of customer inquiries automatically, reducing response time from 2 hours to 2 minutes and increasing customer satisfaction by 35%."
+      }
+    },
     "photo-video": {
       detailedDescription: "I provide professional photo and video editing services to enhance your visual content for marketing, social media, and branding. From basic retouching to complex compositing, I create visually stunning imagery that captivates your audience.",
       features: [

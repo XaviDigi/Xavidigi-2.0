@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { gradientText, gradientBg, glowEffect } from "@/lib/utils";
 import ServiceCard from "@/components/ServiceCard";
+import AIAgentsSection from "@/components/AIAgentsSection";
 import { services } from "@/data/services";
 
 interface HomeProps {
@@ -25,7 +26,7 @@ export default function Home({ onServiceClick }: HomeProps) {
                 Turning <span className={gradientText}>Ideas</span> Into Digital <span className={gradientText}>Reality</span>
               </h1>
               <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-lg">
-                Xavier's digital studio specializing in custom websites, Shopify stores, social media automation, and digital content that drives results.
+                Xavier's digital studio specializing in custom websites, Shopify stores, social media automation, AI agents, and digital content that drives results.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button 
@@ -75,6 +76,7 @@ export default function Home({ onServiceClick }: HomeProps) {
                   <p className="my-2"><span className="text-cyan-400">&gt;</span> Web Creation</p>
                   <p className="my-2"><span className="text-cyan-400">&gt;</span> Shopify Store Development</p>
                   <p className="my-2"><span className="text-cyan-400">&gt;</span> Social Media Automation</p>
+                  <p className="my-2"><span className="text-cyan-400">&gt;</span> AI Agent Creation</p>
                   <p className="my-2"><span className="text-cyan-400">&gt;</span> Photo &amp; Video Editing</p>
                   <p className="mt-4 animate-pulse"><span className="text-cyan-400">&gt;</span> <span className="text-gradient">Ready to transform your digital presence...</span> <span className="inline-block animate-pulse">|</span></p>
                 </div>
@@ -110,6 +112,8 @@ export default function Home({ onServiceClick }: HomeProps) {
           </div>
         </div>
       </section>
+
+      <AIAgentsSection />
     </>
   );
 }

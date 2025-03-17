@@ -65,4 +65,11 @@
   .text-gradient {
     @apply bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent;
   }
+  
+  .bg-grid-pattern {
+    background-image: 
+      linear-gradient(to right, rgba(25, 105, 128, 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(25, 105, 128, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
 }
