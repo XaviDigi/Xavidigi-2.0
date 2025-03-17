@@ -12,18 +12,22 @@ interface ServicesProps {
 }
 
 export default function Services({ selectedServiceId, onClose }: ServicesProps) {
+  const [location] = useLocation();
   const [selectedService, setSelectedService] = useState<typeof services[0] | null>(null);
   
   useEffect(() => {
-    if (selectedServiceId) {
-      const service = services.find(s => s.id === selectedServiceId);
+    const params = new URLSearchParams(location.split('?')[1]);
+    const serviceId = params.get('id') || selectedServiceId;
+    
+    if (serviceId) {
+      const service = services.find(s => s.id === serviceId);
       if (service) {
         setSelectedService(service);
       }
     } else {
       setSelectedService(null);
     }
-  }, [selectedServiceId]);
+  }, [selectedServiceId, location]);
   
   const processSteps = [
     {

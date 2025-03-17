@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter"; // Added useLocation import
 import { gradientBg, glowEffect } from "@/lib/utils";
 
 export interface ServiceProps {
@@ -18,6 +18,8 @@ interface ServiceCardProps {
 }
 
 export default function ServiceCard({ service, index, variant = "grid" }: ServiceCardProps) {
+  const [, navigate] = useLocation(); // Added useLocation hook
+
   if (variant === "featured") {
     return (
       <Link href={`/services/${service.id}`}>
@@ -46,6 +48,7 @@ export default function ServiceCard({ service, index, variant = "grid" }: Servic
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
+      onClick={() => navigate(`/services/${service.id}`)} // Added onClick handler for navigation
     >
       <div className={`${gradientBg} h-1`}></div>
       <div className="p-6">
@@ -54,7 +57,7 @@ export default function ServiceCard({ service, index, variant = "grid" }: Servic
         </div>
         <h3 className="text-xl font-bold text-gradient mb-3">{service.title}</h3>
         <p className="text-gray-300 mb-4 text-sm">{service.description}</p>
-        <Link href={`/services/${service.id}`}>
+        <Link href={`/services/${service.id}`}> {/* Kept original Link for consistency */}
           <div className="text-cyan-400 font-medium hover:text-purple-400 transition duration-300 flex items-center cursor-pointer">
             Learn More
             <svg
