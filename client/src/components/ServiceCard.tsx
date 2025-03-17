@@ -48,8 +48,7 @@ export default function ServiceCard({ service, index, variant = "grid" }: Servic
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
-      onClick={() => navigate(`/services/${service.id}`)} // Added onClick handler for navigation
-    >
+      >
       <div className={`${gradientBg} h-1`}></div>
       <div className="p-6">
         <div className="w-14 h-14 bg-black/30 rounded-md flex items-center justify-center mb-4 border border-cyan-500/30">
@@ -57,9 +56,11 @@ export default function ServiceCard({ service, index, variant = "grid" }: Servic
         </div>
         <h3 className="text-xl font-bold text-gradient mb-3">{service.title}</h3>
         <p className="text-gray-300 mb-4 text-sm">{service.description}</p>
-        <Link href={`/services/${service.id}`}> {/* Kept original Link for consistency */}
-          <div className="text-cyan-400 font-medium hover:text-purple-400 transition duration-300 flex items-center cursor-pointer">
-            Learn More
+        <div 
+          onClick={() => navigate(`/services/${service.id}`)}
+          className="text-cyan-400 font-medium hover:text-purple-400 transition duration-300 flex items-center cursor-pointer"
+        >
+          Learn More
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 ml-2"
