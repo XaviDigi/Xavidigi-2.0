@@ -5,6 +5,7 @@ import { gradientText, gradientBg } from "@/lib/utils";
 import { ArrowRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
+import { useLocation } from "wouter";
 
 interface ServicesProps {
   selectedServiceId?: string | null;
