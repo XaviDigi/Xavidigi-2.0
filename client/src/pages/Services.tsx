@@ -2,7 +2,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import ServiceCard from "@/components/ServiceCard";
 import { services } from "@/data/services";
 import { gradientText, gradientBg } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import { Cpu, BarChart, Zap, Code2, TrendingUp, Briefcase } from "lucide-react";
 
 const skills = [
@@ -40,6 +39,7 @@ const skills = [
 import { ArrowRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
+import { useLocation, Link } from "wouter";
 import { useLocation, Link } from "wouter";
 
 interface ServicesProps {
