@@ -136,9 +136,6 @@ export default function Home({ onServiceClick }: HomeProps) {
         <AIAgentsSection />
       </div>
 
-      <div id="portfolio-carousel-section">
-        <PortfolioCarousel />
-      </div>
-    </>
+      </>
   );
 }

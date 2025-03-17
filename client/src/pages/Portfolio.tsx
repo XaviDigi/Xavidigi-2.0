@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import PortfolioItem from "@/components/PortfolioItem";
-import PortfolioCarousel from "@/components/PortfolioCarousel";
+
 import { portfolioItems } from "@/data/portfolio";
 import { gradientText, gradientBg, glowEffect } from "@/lib/utils";
 
@@ -17,8 +17,6 @@ export default function Portfolio() {
 
   return (
     <>
-      <PortfolioCarousel />
-      
       <section className="py-24 relative">
         <div className="absolute inset-0 bg-grid-pattern opacity-30 z-0"></div>
         <div className="container mx-auto px-4 md:px-6 relative z-10">
