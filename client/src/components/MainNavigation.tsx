@@ -62,7 +62,7 @@ export default function MainNavigation({ onNavigate }: MainNavigationProps) {
         <Logo />
         
         {/* Desktop Navigation */}
-        <nav className="hidden md:block">
+        <nav className="hidden md:flex items-center space-x-8">
           <ul className="flex space-x-8">
             {NAV_ITEMS.map((item) => (
               <li key={item.section}>
@@ -82,6 +82,13 @@ export default function MainNavigation({ onNavigate }: MainNavigationProps) {
               </li>
             ))}
           </ul>
+          
+          <button 
+            onClick={() => handleNavClick('contact-section')}
+            className={`${gradientBg} text-white font-medium py-2 px-4 rounded-md transition-all duration-300 hover:shadow-glow hover:scale-105`}
+          >
+            Get Started
+          </button>
         </nav>
         
         {/* Mobile Menu Button */}
