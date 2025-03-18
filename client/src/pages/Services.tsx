@@ -5,7 +5,7 @@ import { gradientText, gradientBg } from "@/lib/utils";
 import { ArrowRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-import { useLocation, useRoute } from "wouter";
+import { useLocation } from "wouter";
 
 interface ServicesProps {
   selectedServiceId?: string | null;
@@ -13,7 +13,7 @@ interface ServicesProps {
 }
 
 export default function Services({ selectedServiceId, onClose }: ServicesProps) {
-  const [location, navigate] = useLocation();
+  const [location, setLocation] = useLocation();
   const [selectedService, setSelectedService] = useState<typeof services[0] | null>(null);
 
   useEffect(() => {
@@ -178,7 +178,7 @@ export default function Services({ selectedServiceId, onClose }: ServicesProps) 
                     } else {
                       setSelectedService(null);
                       // Remove the id parameter from the URL
-                      navigate('/services');
+                      setLocation('/services');
                     }
                   }}
                   className="absolute right-4 top-4 bg-zinc-800/80 p-2 rounded-full hover:bg-zinc-700 transition-colors duration-200 z-20"
