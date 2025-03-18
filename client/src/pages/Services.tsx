@@ -5,7 +5,7 @@ import { gradientText, gradientBg } from "@/lib/utils";
 import { ArrowRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-import { useLocation, Link } from "wouter";
+import { useLocation, useRoute } from "wouter";
 
 interface ServicesProps {
   selectedServiceId?: string | null;
@@ -13,7 +13,7 @@ interface ServicesProps {
 }
 
 export default function Services({ selectedServiceId, onClose }: ServicesProps) {
-  const [location] = useLocation();
+  const [location, navigate] = useLocation();
   const [selectedService, setSelectedService] = useState<typeof services[0] | null>(null);
 
   useEffect(() => {
@@ -24,6 +24,12 @@ export default function Services({ selectedServiceId, onClose }: ServicesProps) 
       const service = services.find(s => s.id === serviceId);
       if (service) {
         setSelectedService(service);
+        
+        // Make sure the services section is visible if a service is selected
+        const servicesSection = document.getElementById('services-section');
+        if (servicesSection) {
+          servicesSection.scrollIntoView({ behavior: 'smooth' });
+        }
       }
     } else {
       setSelectedService(null);
@@ -166,7 +172,15 @@ export default function Services({ selectedServiceId, onClose }: ServicesProps) 
                 transition={{ duration: 0.5 }}
               >
                 <button 
-                  onClick={onClose}
+                  onClick={() => {
+                    if (onClose) {
+                      onClose();
+                    } else {
+                      setSelectedService(null);
+                      // Remove the id parameter from the URL
+                      navigate('/services');
+                    }
+                  }}
                   className="absolute right-4 top-4 bg-zinc-800/80 p-2 rounded-full hover:bg-zinc-700 transition-colors duration-200 z-20"
                 >
                   <X className="h-5 w-5 text-cyan-400" />

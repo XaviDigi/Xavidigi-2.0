@@ -23,22 +23,27 @@ export default function ServiceCard({ service, index, variant = "grid" }: Servic
 
   if (variant === "featured") {
     return (
-      <Link href={`/services/${service.id}`}>
-        <motion.div
-          className={`futuristic-card ${glowEffect} h-[300px] cursor-pointer`}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: index * 0.15 }}
-          viewport={{ once: true }}
-          whileHover={{ y: -10 }}
-        >
-          <div className={`${gradientBg} h-1`}></div>
-          <div className="flex flex-col items-center justify-center h-full p-6 text-center relative z-10">
-            <service.icon className="w-20 h-20 text-cyan-400 mb-6" strokeWidth={1.5} />
-            <h3 className="text-2xl font-bold text-gradient mb-2">{service.title}</h3>
-          </div>
-        </motion.div>
-      </Link>
+      <motion.div
+        className={`futuristic-card ${glowEffect} h-[300px] cursor-pointer`}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: index * 0.15 }}
+        viewport={{ once: true }}
+        whileHover={{ y: -10 }}
+        onClick={() => {
+          const servicesSection = document.getElementById('services-section');
+          if (servicesSection) {
+            servicesSection.scrollIntoView({ behavior: 'smooth' });
+            navigate(`/services?id=${service.id}`);
+          }
+        }}
+      >
+        <div className={`${gradientBg} h-1`}></div>
+        <div className="flex flex-col items-center justify-center h-full p-6 text-center relative z-10">
+          <service.icon className="w-20 h-20 text-cyan-400 mb-6" strokeWidth={1.5} />
+          <h3 className="text-2xl font-bold text-gradient mb-2">{service.title}</h3>
+        </div>
+      </motion.div>
     );
   }
 
@@ -58,7 +63,13 @@ export default function ServiceCard({ service, index, variant = "grid" }: Servic
         <h3 className="text-xl font-bold text-gradient mb-3">{service.title}</h3>
         <p className="text-gray-300 mb-4 text-sm">{service.description}</p>
         <div 
-          onClick={() => navigate(`/services?id=${service.id}`)}
+          onClick={() => {
+            const servicesSection = document.getElementById('services-section');
+            if (servicesSection) {
+              servicesSection.scrollIntoView({ behavior: 'smooth' });
+              navigate(`/services?id=${service.id}`);
+            }
+          }}
           className="text-cyan-400 font-medium hover:text-purple-400 transition duration-300 flex items-center cursor-pointer"
         >
           Learn More
