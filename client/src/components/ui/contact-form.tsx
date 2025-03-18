@@ -80,7 +80,7 @@ export function ContactForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Your Email</FormLabel>
+              <FormLabel>{t.contact.form.email}</FormLabel>
               <FormControl>
                 <Input placeholder="john@example.com" {...field} />
               </FormControl>
@@ -94,7 +94,7 @@ export function ContactForm() {
           name="subject"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Subject</FormLabel>
+              <FormLabel>{t.contact.form.subject}</FormLabel>
               <FormControl>
                 <Input placeholder="Project Inquiry" {...field} />
               </FormControl>
@@ -108,7 +108,7 @@ export function ContactForm() {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Message</FormLabel>
+              <FormLabel>{t.contact.form.message}</FormLabel>
               <FormControl>
                 <Textarea 
                   placeholder="Tell me about your project..."
@@ -129,10 +129,10 @@ export function ContactForm() {
           {contactMutation.isPending ? (
             <>
               <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
-              Sending...
+              {t.contact.form.sending}
             </>
           ) : (
-            "Send Message"
+            t.contact.form.submit
           )}
         </Button>
       </form>

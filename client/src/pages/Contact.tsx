@@ -95,7 +95,7 @@ export default function Contact() {
 
                   <div className="pt-6 border-t border-zinc-800">
                     <h4 className="text-lg font-medium mb-6 text-white">Connect With Me</h4>
-                    <SocialLinks variant="contact" addLinkedIn={"https://www.linkedin.com/in/xavierkf10/"}/> {/* Added LinkedIn link */}
+                    <SocialLinks variant="contact" />
                   </div>
                 </div>
               </div>
