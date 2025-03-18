@@ -9,11 +9,12 @@ import Portfolio from "@/pages/Portfolio";
 import Contact from "@/pages/Contact";
 import MainLayout from "@/layouts/MainLayout";
 import { services } from "@/data/services";
+import { Route } from 'react-router-dom'; // Import Route
 
 function App() {
   // Modal state for service details
   const [selectedService, setSelectedService] = useState<string | null>(null);
-  
+
   const handleServiceClick = (serviceId: string) => {
     setSelectedService(serviceId);
     // Scroll to services section
@@ -22,7 +23,7 @@ function App() {
       servicesSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
-  
+
   const handleCloseServiceDetail = () => {
     setSelectedService(null);
   };
@@ -39,19 +40,28 @@ function App() {
           <div id="home-section">
             <Home onServiceClick={handleServiceClick} />
           </div>
-          
+
           <div id="about-section">
             <About />
           </div>
-          
-          <div id="services-section">
-            <Services selectedServiceId={selectedService} onClose={handleCloseServiceDetail} />
-          </div>
-          
+
+          <Route path="/services/:id">
+            {(params) => (
+              <div id="services-section">
+                <Services selectedServiceId={params.id} onClose={handleCloseServiceDetail} />
+              </div>
+            )}
+          </Route>
+          <Route path="/services">
+            <div id="services-section">
+              <Services onClose={handleCloseServiceDetail} />
+            </div>
+          </Route>
+
           <div id="portfolio-section">
             <Portfolio />
           </div>
-          
+
           <div id="contact-section">
             <Contact />
           </div>

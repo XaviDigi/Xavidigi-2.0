@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
 import { Link, useLocation } from "wouter";
@@ -34,7 +33,7 @@ export default function ServiceCard({ service, index, variant = "grid" }: Servic
           const servicesSection = document.getElementById('services-section');
           if (servicesSection) {
             servicesSection.scrollIntoView({ behavior: 'smooth' });
-            setLocation(`/services?id=${service.id}`);
+            setLocation(`/services/${service.id}`);
           }
         }}
       >
@@ -67,7 +66,7 @@ export default function ServiceCard({ service, index, variant = "grid" }: Servic
             const servicesSection = document.getElementById('services-section');
             if (servicesSection) {
               servicesSection.scrollIntoView({ behavior: 'smooth' });
-              setLocation(`/services?id=${service.id}`);
+              setLocation(`/services/${service.id}`);
             }
           }}
           className="text-cyan-400 font-medium hover:text-purple-400 transition duration-300 flex items-center cursor-pointer"
