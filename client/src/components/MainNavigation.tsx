@@ -2,20 +2,31 @@ import { useState, useEffect } from "react";
 import Logo from "./Logo";
 import MobileMenu from "./MobileMenu";
 import { gradientBg } from "@/lib/utils";
+import { useLanguage } from "@/lib/languageContext";
+import { Translations } from "@/lib/translations";
 
-const NAV_ITEMS = [
-  { name: "Home", section: "home-section" },
-  { name: "About", section: "about-section" },
-  { name: "Services", section: "services-section" },
-  { name: "Portfolio", section: "portfolio-section" },
-  { name: "Contact", section: "contact-section" },
-];
+interface NavItem {
+  name: string;
+  section: string;
+  translation: keyof Translations["nav"];
+}
 
 interface MainNavigationProps {
   onNavigate?: (section: string) => void;
 }
 
 export default function MainNavigation({ onNavigate }: MainNavigationProps) {
+  const { t } = useLanguage();
+  const { nav } = t;
+  
+  const NAV_ITEMS: NavItem[] = [
+    { name: nav.home, section: "home-section", translation: "home" },
+    { name: nav.about, section: "about-section", translation: "about" },
+    { name: nav.services, section: "services-section", translation: "services" },
+    { name: nav.portfolio, section: "portfolio-section", translation: "portfolio" },
+    { name: nav.contact, section: "contact-section", translation: "contact" },
+  ];
+  
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home-section");
@@ -87,7 +98,7 @@ export default function MainNavigation({ onNavigate }: MainNavigationProps) {
             onClick={() => handleNavClick('contact-section')}
             className={`${gradientBg} text-white font-medium py-2 px-4 rounded-md transition-all duration-300 hover:shadow-glow hover:scale-105`}
           >
-            Get Started
+            {t.home.hero.cta}
           </button>
         </nav>
         

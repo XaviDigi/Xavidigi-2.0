@@ -3,6 +3,8 @@ import MainNavigation from "@/components/MainNavigation";
 import SocialLinks from "@/components/SocialLinks";
 import Logo from "@/components/Logo";
 import { gradientText } from "@/lib/utils";
+import { useLanguage } from "@/lib/languageContext";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -10,8 +12,13 @@ interface MainLayoutProps {
 }
 
 export default function MainLayout({ children, onNavigate }: MainLayoutProps) {
+  const { t } = useLanguage();
+  
   return (
     <div className="flex flex-col min-h-screen bg-black">
+      <div className="absolute top-4 right-4 z-50">
+        <LanguageSwitcher />
+      </div>
       <MainNavigation onNavigate={onNavigate} />
       <main className="flex-grow pt-16">{children}</main>
       <footer className="bg-zinc-900/80 border-t border-cyan-500/20 text-white py-12">
@@ -29,31 +36,31 @@ export default function MainLayout({ children, onNavigate }: MainLayoutProps) {
                 onClick={() => onNavigate?.('home-section')}
                 className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer"
               >
-                Home
+                {t.nav.home}
               </button>
               <button 
                 onClick={() => onNavigate?.('about-section')}
                 className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer"
               >
-                About
+                {t.nav.about}
               </button>
               <button 
                 onClick={() => onNavigate?.('services-section')}
                 className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer"
               >
-                Services
+                {t.nav.services}
               </button>
               <button 
                 onClick={() => onNavigate?.('portfolio-section')}
                 className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer"
               >
-                Portfolio
+                {t.nav.portfolio}
               </button>
               <button 
                 onClick={() => onNavigate?.('contact-section')}
                 className="text-gray-300 hover:text-cyan-400 transition duration-300 cursor-pointer"
               >
-                Contact
+                {t.nav.contact}
               </button>
             </div>
             
