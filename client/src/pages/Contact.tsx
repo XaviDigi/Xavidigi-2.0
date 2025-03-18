@@ -56,7 +56,7 @@ export default function Contact() {
               <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/30 to-purple-600/30 rounded-lg blur opacity-75"></div>
               <div className="relative futuristic-card p-8 h-full overflow-hidden">
                 <div className={`${gradientBg} h-1 absolute top-0 left-0 right-0`}></div>
-                <h3 className={`text-2xl font-bold mb-6 ${gradientText}`}>Contact Info</h3>
+                <h3 className={`text-2xl font-bold mb-6 ${gradientText}`}>{t.contact.info.title}</h3>
 
                 <div className="space-y-6">
                   <div className="flex items-start group">
@@ -64,7 +64,7 @@ export default function Contact() {
                       <MailIcon className="text-cyan-400" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-medium mb-1 text-white">Email</h4>
+                      <h4 className="text-lg font-medium mb-1 text-white">{t.contact.info.email}</h4>
                       <a href="mailto:xavier@xavidigi.com" className="text-gray-400 hover:text-cyan-400 transition duration-300">
                         xavier@xavidigi.com
                       </a>
@@ -76,7 +76,7 @@ export default function Contact() {
                       <PhoneIcon className="text-cyan-400" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-medium mb-1 text-white">Phone</h4>
+                      <h4 className="text-lg font-medium mb-1 text-white">{t.contact.info.phone}</h4>
                       <a href="tel:+8108090743217" className="text-gray-400 hover:text-cyan-400 transition duration-300">
                         +81 08090743217
                       </a>
@@ -88,14 +88,14 @@ export default function Contact() {
                       <MapPinIcon className="text-cyan-400" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-medium mb-1 text-white">Location</h4>
+                      <h4 className="text-lg font-medium mb-1 text-white">{t.contact.info.location}</h4>
                       <p className="text-gray-400">Nagoya, Japan</p>
                     </div>
                   </div>
 
                   <div className="pt-6 border-t border-zinc-800">
-                    <h4 className="text-lg font-medium mb-6 text-white">Connect With Me</h4>
-                    <SocialLinks variant="contact" />
+                    <h4 className="text-lg font-medium mb-6 text-white">{t.contact.info.connect}</h4>
+                    <SocialLinks variant="contact" addLinkedIn={"https://www.linkedin.com/in/xavierkf10/"} />
                   </div>
                 </div>
               </div>

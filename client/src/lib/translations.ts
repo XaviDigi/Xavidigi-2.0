@@ -99,6 +99,13 @@ export interface Translations {
       error: string;
       errorMessage: string;
     };
+    info: {
+      title: string;
+      email: string;
+      phone: string;
+      location: string;
+      connect: string;
+    };
   };
 }
 
@@ -198,6 +205,13 @@ export const en: Translations = {
       successMessage: 'Thank you for your message. I\'ll get back to you soon.',
       error: 'Something went wrong.',
       errorMessage: 'Please try again later.',
+    },
+    info: {
+      title: 'Contact Info',
+      email: 'Email',
+      phone: 'Phone',
+      location: 'Location',
+      connect: 'Connect With Me',
     },
   },
 };
@@ -299,6 +313,13 @@ export const fr: Translations = {
       error: 'Un problème est survenu.',
       errorMessage: 'Veuillez réessayer plus tard.',
     },
+    info: {
+      title: 'Informations de Contact',
+      email: 'Email',
+      phone: 'Téléphone',
+      location: 'Localisation',
+      connect: 'Me Suivre',
+    },
   },
 };
 
@@ -398,6 +419,13 @@ export const ja: Translations = {
       successMessage: 'お問い合わせありがとうございます。すぐにご連絡いたします。',
       error: '問題が発生しました。',
       errorMessage: '後でもう一度お試しください。',
+    },
+    info: {
+      title: '連絡先',
+      email: 'メールアドレス',
+      phone: '電話番号',
+      location: '場所',
+      connect: 'フォローする',
     },
   },
 };

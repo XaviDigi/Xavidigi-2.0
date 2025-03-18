@@ -3,13 +3,14 @@ import { gradientBg } from "@/lib/utils";
 
 interface SocialLinksProps {
   variant?: "footer" | "contact";
+  addLinkedIn?: string;
 }
 
-export default function SocialLinks({ variant = "footer" }: SocialLinksProps) {
+export default function SocialLinks({ variant = "footer", addLinkedIn }: SocialLinksProps) {
   const isFooter = variant === "footer";
 
   const links = [
-    { icon: FaLinkedinIn, href: "https://www.linkedin.com/in/xavierkf10/" },
+    { icon: FaLinkedinIn, href: addLinkedIn || "https://www.linkedin.com/in/xavierkf10/" },
     { icon: FaTwitter, href: "https://twitter.com" },
     { icon: FaInstagram, href: "https://instagram.com" },
     { icon: FaYoutube, href: "https://youtube.com" },
