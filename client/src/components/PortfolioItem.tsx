@@ -51,13 +51,6 @@ export default function PortfolioItem({ item, index }: PortfolioItemComponentPro
                 {item.title}
               </h3>
               <div className="w-full h-px bg-cyan-500/30 mb-4 group-hover:bg-gradient-to-r from-cyan-500 to-purple-600 transition-all duration-300"></div>
-              
-              <button
-                className="text-sm bg-zinc-900/80 border border-cyan-500/30 text-cyan-400 px-4 py-2 rounded 
-                           hover:border-cyan-400 hover:text-white hover:shadow-glow transition duration-300"
-              >
-                View Project
-              </button>
             </div>
           </div>
         </div>
