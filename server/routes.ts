@@ -2,6 +2,15 @@ import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { z } from "zod";
+import nodemailer from "nodemailer";
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  }
+});
 
 // Contact form schema
 const contactFormSchema = z.object({
@@ -18,9 +27,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Validate request body
       const validatedData = contactFormSchema.parse(req.body);
       
-      // In a real app, you might save this to a database or send an email
-      // Here we're just logging and returning success
-      console.log("Contact form submission:", validatedData);
+      // Send email
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: 'ismaelkf@gmail.com',
+        subject: `New Contact Form Submission: ${validatedData.subject}`,
+        text: `
+Name: ${validatedData.name}
+Email: ${validatedData.email}
+Subject: ${validatedData.subject}
+Message: ${validatedData.message}
+        `
+      };
+
+      await transporter.sendMail(mailOptions);
       
       return res.status(200).json({ 
         success: true, 

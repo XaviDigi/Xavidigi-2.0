@@ -7,9 +7,9 @@ interface SocialLinksProps {
 
 export default function SocialLinks({ variant = "footer" }: SocialLinksProps) {
   const isFooter = variant === "footer";
-  
+
   const links = [
-    { icon: FaLinkedinIn, href: "https://linkedin.com" },
+    { icon: FaLinkedinIn, href: "https://www.linkedin.com/in/xavierkf10/" },
     { icon: FaTwitter, href: "https://twitter.com" },
     { icon: FaInstagram, href: "https://instagram.com" },
     { icon: FaYoutube, href: "https://youtube.com" },
