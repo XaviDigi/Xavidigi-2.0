@@ -40,12 +40,12 @@ function App() {
             <Home onServiceClick={handleServiceClick} />
           </div>
           
-          <div id="services-section">
-            <Services selectedServiceId={selectedService} onClose={handleCloseServiceDetail} />
-          </div>
-          
           <div id="about-section">
             <About />
+          </div>
+          
+          <div id="services-section">
+            <Services selectedServiceId={selectedService} onClose={handleCloseServiceDetail} />
           </div>
           
           <div id="portfolio-section">
