@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import Logo from "./Logo";
 import MobileMenu from "./MobileMenu";
 import { gradientBg } from "@/lib/utils";
-import { useLanguage } from "@/lib/languageContext";
-import { Translations } from "@/lib/translations";
+// import { useLanguage } from "@/lib/languageContext";
+// import { Translations } from "@/lib/translations";
 
 interface NavItem {
   name: string;
   section: string;
-  translation: keyof Translations["nav"];
+  // translation: keyof Translations["nav"];
 }
 
 interface MainNavigationProps {
@@ -16,17 +16,17 @@ interface MainNavigationProps {
 }
 
 export default function MainNavigation({ onNavigate }: MainNavigationProps) {
-  const { t } = useLanguage();
-  const { nav } = t;
-  
+  // const { t } = useLanguage();
+  // const { nav } = t;
+
   const NAV_ITEMS: NavItem[] = [
-    { name: nav.home, section: "home-section", translation: "home" },
-    { name: nav.about, section: "about-section", translation: "about" },
-    { name: nav.services, section: "services-section", translation: "services" },
-    { name: nav.portfolio, section: "portfolio-section", translation: "portfolio" },
-    { name: nav.contact, section: "contact-section", translation: "contact" },
+    { name: "Home", section: "home-section" },
+    { name: "About", section: "about-section" },
+    { name: "Services", section: "services-section" },
+    { name: "Portfolio", section: "portfolio-section" },
+    { name: "Contact", section: "contact-section" },
   ];
-  
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home-section");
@@ -34,10 +34,10 @@ export default function MainNavigation({ onNavigate }: MainNavigationProps) {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
-      
+
       // Determine active section based on scroll position
       const sections = NAV_ITEMS.map(item => item.section);
-      
+
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -71,7 +71,7 @@ export default function MainNavigation({ onNavigate }: MainNavigationProps) {
     >
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center py-4">
         <Logo />
-        
+
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           <ul className="flex space-x-8">
@@ -93,15 +93,15 @@ export default function MainNavigation({ onNavigate }: MainNavigationProps) {
               </li>
             ))}
           </ul>
-          
+
           <button 
             onClick={() => handleNavClick('contact-section')}
             className={`${gradientBg} text-white font-medium py-2 px-4 rounded-md transition-all duration-300 hover:shadow-glow hover:scale-105`}
           >
-            {t.home.hero.cta}
+            Contact Us
           </button>
         </nav>
-        
+
         {/* Mobile Menu Button */}
         <button 
           className="md:hidden text-white focus:outline-none"
@@ -133,7 +133,7 @@ export default function MainNavigation({ onNavigate }: MainNavigationProps) {
           </svg>
         </button>
       </div>
-      
+
       {/* Mobile Navigation Menu */}
       <MobileMenu 
         items={NAV_ITEMS.map(item => ({ name: item.name, section: item.section }))} 
