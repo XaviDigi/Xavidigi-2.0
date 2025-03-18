@@ -2,20 +2,6 @@ import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { z } from "zod";
-import nodemailer from "nodemailer";
-
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  },
-  tls: {
-    rejectUnauthorized: false
-  }
-});
 
 // Contact form schema
 const contactFormSchema = z.object({
@@ -32,21 +18,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Validate request body
       const validatedData = contactFormSchema.parse(req.body);
       
-      // Send email
-      const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: 'ismaelkf@gmail.com',
-        subject: `New Contact Form Submission: ${validatedData.subject}`,
-        text: `
-Name: ${validatedData.name}
-Email: ${validatedData.email}
-Subject: ${validatedData.subject}
-Message: ${validatedData.message}
-        `
-      };
-
-      await transporter.sendMail(mailOptions);
+      // Log the message (in a real app, you would save this to a database or send an email)
+      console.log("Contact form submission received:");
+      console.log(`Name: ${validatedData.name}`);
+      console.log(`Email: ${validatedData.email}`);
+      console.log(`Subject: ${validatedData.subject}`);
+      console.log(`Message: ${validatedData.message}`);
       
+      // Return success response
       return res.status(200).json({ 
         success: true, 
         message: "Message received" 
@@ -60,6 +39,7 @@ Message: ${validatedData.message}
         });
       }
       
+      console.error("Contact form error:", error);
       return res.status(500).json({ 
         success: false, 
         message: "Server error, please try again later"
