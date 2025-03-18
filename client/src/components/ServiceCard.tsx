@@ -61,7 +61,6 @@ export default function ServiceCard({ service, index, variant = "grid" }: Servic
         </div>
         <h3 className="text-xl font-bold text-gradient mb-3">{service.title}</h3>
         <p className="text-gray-300 mb-4 text-sm">{service.description}</p>
-        {/* View Project link removed */}
       </div>
     </motion.div>
   );

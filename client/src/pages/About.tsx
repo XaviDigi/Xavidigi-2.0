@@ -71,7 +71,7 @@ export default function About() {
               <div className={`${gradientBg} absolute -inset-0.5 rounded-lg blur-sm opacity-50`}></div>
               <div className="futuristic-card aspect-[3/4] overflow-hidden relative z-10">
                 <img
-                  src="/attached_assets/472272961_10170858996640122_3347315954930082828_n.jpg"
+                  src="/attached_assets/me.png"
                   alt="Profile"
                   className="rounded-md object-cover h-full w-full"
                 />
