@@ -19,7 +19,7 @@ interface ServiceCardProps {
 }
 
 export default function ServiceCard({ service, index, variant = "grid" }: ServiceCardProps) {
-  const [, navigate] = useLocation();
+  const [, setLocation] = useLocation();
 
   if (variant === "featured") {
     return (
@@ -34,7 +34,7 @@ export default function ServiceCard({ service, index, variant = "grid" }: Servic
           const servicesSection = document.getElementById('services-section');
           if (servicesSection) {
             servicesSection.scrollIntoView({ behavior: 'smooth' });
-            navigate(`/services?id=${service.id}`);
+            setLocation(`/services?id=${service.id}`);
           }
         }}
       >
@@ -67,7 +67,7 @@ export default function ServiceCard({ service, index, variant = "grid" }: Servic
             const servicesSection = document.getElementById('services-section');
             if (servicesSection) {
               servicesSection.scrollIntoView({ behavior: 'smooth' });
-              navigate(`/services?id=${service.id}`);
+              setLocation(`/services?id=${service.id}`);
             }
           }}
           className="text-cyan-400 font-medium hover:text-purple-400 transition duration-300 flex items-center cursor-pointer"
