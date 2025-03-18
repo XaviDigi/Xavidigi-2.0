@@ -9,7 +9,7 @@ import Portfolio from "@/pages/Portfolio";
 import Contact from "@/pages/Contact";
 import MainLayout from "@/layouts/MainLayout";
 import { services } from "@/data/services";
-import { Route } from 'react-router-dom'; // Import Route
+import { Route } from 'wouter';
 
 function App() {
   // Modal state for service details
@@ -45,18 +45,9 @@ function App() {
             <About />
           </div>
 
-          <Route path="/services/:id">
-            {(params) => (
-              <div id="services-section">
-                <Services selectedServiceId={params.id} onClose={handleCloseServiceDetail} />
-              </div>
-            )}
-          </Route>
-          <Route path="/services">
-            <div id="services-section">
-              <Services onClose={handleCloseServiceDetail} />
-            </div>
-          </Route>
+          <div id="services-section">
+            <Services selectedServiceId={selectedService} onClose={handleCloseServiceDetail} />
+          </div>
 
           <div id="portfolio-section">
             <Portfolio />
