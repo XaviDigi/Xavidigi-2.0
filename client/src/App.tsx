@@ -10,6 +10,7 @@ import Contact from "@/pages/Contact";
 import MainLayout from "@/layouts/MainLayout";
 import { services } from "@/data/services";
 import { Route } from 'wouter';
+import { LanguageProvider } from "@/lib/languageContext";
 
 function App() {
   // Modal state for service details
@@ -30,35 +31,37 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <MainLayout onNavigate={(section) => {
-        const element = document.getElementById(section);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }}>
-        <div className="scroll-smooth">
-          <div id="home-section">
-            <Home onServiceClick={handleServiceClick} />
-          </div>
+      <LanguageProvider>
+        <MainLayout onNavigate={(section) => {
+          const element = document.getElementById(section);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }}>
+          <div className="scroll-smooth">
+            <div id="home-section">
+              <Home onServiceClick={handleServiceClick} />
+            </div>
 
-          <div id="about-section">
-            <About />
-          </div>
+            <div id="about-section">
+              <About />
+            </div>
 
-          <div id="services-section">
-            <Services selectedServiceId={selectedService} onClose={handleCloseServiceDetail} />
-          </div>
+            <div id="services-section">
+              <Services selectedServiceId={selectedService} onClose={handleCloseServiceDetail} />
+            </div>
 
-          <div id="portfolio-section">
-            <Portfolio />
-          </div>
+            <div id="portfolio-section">
+              <Portfolio />
+            </div>
 
-          <div id="contact-section">
-            <Contact />
+            <div id="contact-section">
+              <Contact />
+            </div>
           </div>
-        </div>
-      </MainLayout>
-      <Toaster />
+        </MainLayout>
+        <Toaster />
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }

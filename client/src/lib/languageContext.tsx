@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
-import { Language, translations, Translations, en } from './translations';
+import { Language, Translations, en, fr, ja } from './translations';
 
 // Define the context type
 type LanguageContextType = {
@@ -27,15 +27,21 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   };
 
   const [language, setLanguageState] = useState<Language>(getSavedLanguage());
-  const [translations, setTranslations] = useState<Translations>(en);
+  const [translationData, setTranslationData] = useState<Translations>(en);
 
   // Update translations when language changes
   useEffect(() => {
-    const lang = language as keyof typeof translations;
-    import('./translations').then((module) => {
-      setTranslations(module[lang]);
-      localStorage.setItem('language', language);
-    });
+    // Get the appropriate translation based on language
+    if (language === 'en') {
+      setTranslationData(en);
+    } else if (language === 'fr') {
+      setTranslationData(fr);
+    } else if (language === 'ja') {
+      setTranslationData(ja);
+    }
+    
+    // Save to localStorage
+    localStorage.setItem('language', language);
   }, [language]);
 
   // Function to change language
@@ -44,14 +50,14 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t: translations }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t: translationData }}>
       {children}
     </LanguageContext.Provider>
   );
 }
 
-// Hook to use the language context
-export function useLanguage() {
+// Custom hook to use the language context
+export const useLanguage = () => {
   const context = useContext(LanguageContext);
   if (context === undefined) {
     throw new Error('useLanguage must be used within a LanguageProvider');

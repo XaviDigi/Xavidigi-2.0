@@ -6,6 +6,7 @@ import AIAgentsSection from "@/components/AIAgentsSection";
 import PortfolioCarousel from "@/components/PortfolioCarousel";
 import { services } from "@/data/services";
 import { useState } from "react";
+import { useLanguage } from "@/lib/languageContext";
 
 interface HomeProps {
   onServiceClick?: (serviceId: string) => void;
@@ -13,6 +14,7 @@ interface HomeProps {
 
 export default function Home({ onServiceClick }: HomeProps) {
   const [showAIDetails, setShowAIDetails] = useState(false);
+  const { t } = useLanguage();
   
   const handleLearnMoreClick = () => {
     setShowAIDetails(true);
@@ -35,11 +37,14 @@ export default function Home({ onServiceClick }: HomeProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
+              <p className="text-cyan-400 uppercase tracking-wider mb-3 font-semibold">
+                {t.home.hero.subtitle}
+              </p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                Turning <span className={gradientText}>Ideas</span> Into Digital <span className={gradientText}>Reality</span>
+                {t.home.hero.title}
               </h1>
               <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-lg">
-                Xavier's digital studio specializing in custom websites, Shopify stores, social media automation, AI agents, and digital content that drives results.
+                {t.home.hero.description}
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button 
@@ -52,7 +57,7 @@ export default function Home({ onServiceClick }: HomeProps) {
                     }
                   }}
                 >
-                  View My Work
+                  {t.home.portfolioSection.viewAll}
                 </Button>
                 <Button 
                   size="lg" 
@@ -65,7 +70,7 @@ export default function Home({ onServiceClick }: HomeProps) {
                     }
                   }}
                 >
-                  Let's Talk
+                  {t.contact.subtitle}
                 </Button>
               </div>
             </motion.div>
