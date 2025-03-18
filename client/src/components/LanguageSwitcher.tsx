@@ -23,37 +23,23 @@ export default function LanguageSwitcher() {
   const currentLanguage = languages.find(lang => lang.code === language) || languages[0];
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+    <div className="flex gap-2">
+      {languages.map((lang) => (
         <Button 
-          variant="ghost" 
-          className="h-8 w-8 p-0 rounded-full hover:bg-zinc-800/70 focus:bg-zinc-800/70"
-          aria-label="Change language"
+          key={lang.code}
+          variant={lang.code === language ? "default" : "outline"} 
+          className={`flex items-center gap-1 px-2 py-1 ${
+            lang.code === language 
+              ? "bg-gradient-to-r from-cyan-500 to-purple-600 text-white" 
+              : "border-zinc-700 bg-black/50 text-white hover:bg-zinc-800"
+          }`}
+          onClick={() => setLanguage(lang.code as Language)}
+          aria-label={`Switch to ${lang.name}`}
         >
-          <motion.span 
-            className="text-xl"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            key={currentLanguage.code}
-          >
-            {currentLanguage.flag}
-          </motion.span>
+          <span className="text-lg">{lang.flag}</span>
+          <span className="text-xs font-medium uppercase">{lang.code}</span>
         </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="bg-zinc-900 border-zinc-800 text-white">
-        {languages.map((lang) => (
-          <DropdownMenuItem
-            key={lang.code}
-            className={`flex items-center gap-2 cursor-pointer hover:bg-zinc-800 ${
-              lang.code === language ? 'bg-zinc-800' : ''
-            }`}
-            onClick={() => setLanguage(lang.code as Language)}
-          >
-            <span className="text-lg">{lang.flag}</span>
-            <span>{lang.name}</span>
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+      ))}
+    </div>
   );
 }
