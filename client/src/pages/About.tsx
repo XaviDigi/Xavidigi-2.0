@@ -56,7 +56,7 @@ export default function About() {
             Digital innovator focused on creating captivating web experiences
           </p>
         </motion.div>
-        
+
         <div className="flex flex-col md:flex-row items-center md:items-start gap-12">
           <motion.div
             className="w-full md:w-1/3 relative"
@@ -71,14 +71,14 @@ export default function About() {
               <div className={`${gradientBg} absolute -inset-0.5 rounded-lg blur-sm opacity-50`}></div>
               <div className="futuristic-card aspect-[3/4] overflow-hidden relative z-10">
                 <img
-                  src="https://images.unsplash.com/photo-1537511446984-935f663eb1f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=500&q=80"
-                  alt="Xavier - Digital Creator"
+                  src="/attached_assets/472272961_10170858996640122_3347315954930082828_n.jpg"
+                  alt="Profile"
                   className="rounded-md object-cover h-full w-full"
                 />
               </div>
             </div>
           </motion.div>
-          
+
           <div className="w-full md:w-2/3">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -96,7 +96,7 @@ export default function About() {
                 I specialize in web creation, Shopify store development, social media automation, and digital content creation. My background in both design and development allows me to bridge the gap between aesthetics and functionality, creating digital experiences that engage users and convert visitors into customers.
               </p>
             </motion.div>
-            
+
             <motion.div
               className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 mt-8"
               initial={{ opacity: 0, y: 20 }}
@@ -116,7 +116,7 @@ export default function About() {
                 </div>
               ))}
             </motion.div>
-            
+
             <motion.div
               className="flex flex-wrap gap-4"
               initial={{ opacity: 0, y: 20 }}
@@ -124,18 +124,6 @@ export default function About() {
               transition={{ duration: 0.5, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <Button 
-                size="lg" 
-                className={`${gradientBg} border border-white/10 text-white hover:shadow-glow hover:scale-105 transition-all duration-300 shadow-lg`}
-                onClick={() => {
-                  const servicesSection = document.getElementById('services-section');
-                  if (servicesSection) {
-                    servicesSection.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-              >
-                View My Services
-              </Button>
               <Button 
                 size="lg" 
                 variant="outline" 
