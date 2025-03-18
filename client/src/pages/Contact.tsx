@@ -3,8 +3,10 @@ import { ContactForm } from "@/components/ui/contact-form";
 import SocialLinks from "@/components/SocialLinks";
 import { MailIcon, PhoneIcon, MapPinIcon } from "lucide-react";
 import { gradientText, gradientBg, glowEffect } from "@/lib/utils";
+import { useLanguage } from "@/lib/languageContext";
 
 export default function Contact() {
+  const { t } = useLanguage();
   return (
     <section className="py-24 relative">
       <div className="absolute inset-0 bg-grid-pattern opacity-30 z-0"></div>
@@ -16,11 +18,11 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <p className="text-cyan-400 mb-2 tracking-wider uppercase font-medium">Ready To Chat</p>
-          <h2 className={`text-3xl md:text-4xl font-bold mb-6 ${gradientText}`}>Get In Touch</h2>
+          <p className="text-cyan-400 mb-2 tracking-wider uppercase font-medium">{t.contact.subtitle}</p>
+          <h2 className={`text-3xl md:text-4xl font-bold mb-6 ${gradientText}`}>{t.contact.title}</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 mx-auto mb-6"></div>
           <p className="text-gray-300 max-w-3xl mx-auto">
-            Have a project in mind or want to discuss how I can help your business? Let's talk!
+            {t.contact.description}
           </p>
         </motion.div>
 

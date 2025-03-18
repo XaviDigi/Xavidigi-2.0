@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/lib/languageContext";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -22,6 +23,7 @@ type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 export function ContactForm() {
   const { toast } = useToast();
+  const { t } = useLanguage();
   
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
@@ -38,15 +40,15 @@ export function ContactForm() {
       apiRequest("POST", "/api/contact", data),
     onSuccess: () => {
       toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
+        title: t.contact.form.success,
+        description: t.contact.form.successMessage,
       });
       form.reset();
     },
     onError: (error) => {
       toast({
-        title: "Something went wrong.",
-        description: error.message || "Please try again later.",
+        title: t.contact.form.error,
+        description: error.message || t.contact.form.errorMessage,
         variant: "destructive",
       });
     },
@@ -64,7 +66,7 @@ export function ContactForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Your Name</FormLabel>
+              <FormLabel>{t.contact.form.name}</FormLabel>
               <FormControl>
                 <Input placeholder="John Doe" {...field} />
               </FormControl>
