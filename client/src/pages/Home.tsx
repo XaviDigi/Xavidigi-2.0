@@ -5,6 +5,7 @@ import ServiceCard from "@/components/ServiceCard";
 import AIAgentsSection from "@/components/AIAgentsSection";
 import { services } from "@/data/services";
 import { useState } from "react";
+import { useLanguage } from "@/lib/languageContext";
 
 
 interface HomeProps {
@@ -13,7 +14,7 @@ interface HomeProps {
 
 export default function Home({ onServiceClick }: HomeProps) {
   const [showAIDetails, setShowAIDetails] = useState(false);
-  
+  const { t } = useLanguage();
   
   const handleLearnMoreClick = () => {
     setShowAIDetails(true);
