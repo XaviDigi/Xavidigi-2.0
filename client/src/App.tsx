@@ -10,7 +10,7 @@ import Contact from "@/pages/Contact";
 import MainLayout from "@/layouts/MainLayout";
 import { services } from "@/data/services";
 import { Route } from 'wouter';
-import { LanguageProvider } from "@/lib/languageContext";
+
 
 function App() {
   // Modal state for service details
