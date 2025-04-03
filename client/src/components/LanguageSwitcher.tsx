@@ -27,7 +27,6 @@ export default function LanguageSwitcher() {
           aria-label={`Switch to ${lang.name}`}
         >
           <span className="text-lg">{lang.flag}</span>
-          <span className="text-xs font-medium uppercase">{lang.code}</span>
         </Button>
       ))}
     </div>
