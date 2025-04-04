@@ -16,9 +16,6 @@ export default function MainLayout({ children, onNavigate }: MainLayoutProps) {
 
   return (
     <div className="flex flex-col min-h-screen bg-black">
-      <div className="fixed top-4 right-4 z-50 bg-black/70 backdrop-blur-sm px-2 py-1 rounded-lg border border-zinc-800 shadow-lg">
-        <LanguageSwitcher />
-      </div>
       <MainNavigation onNavigate={onNavigate} />
       <main className="flex-grow pt-16">{children}</main>
       <footer className="bg-zinc-900/80 border-t border-cyan-500/20 text-white py-12">
