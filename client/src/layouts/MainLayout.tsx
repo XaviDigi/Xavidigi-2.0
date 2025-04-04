@@ -4,7 +4,7 @@ import SocialLinks from "@/components/SocialLinks";
 import Logo from "@/components/Logo";
 import { gradientText } from "@/lib/utils";
 import { useLanguage } from "@/lib/languageContext";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
+
 
 interface MainLayoutProps {
   children: ReactNode;

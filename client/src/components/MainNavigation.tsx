@@ -75,31 +75,24 @@ export default function MainNavigation({ onNavigate }: MainNavigationProps) {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           <ul className="flex space-x-8">
-            {NAV_ITEMS.map((item) => (
-              <li key={item.section}>
+            {['Home', 'About', 'Services', 'Portfolio'].map((item) => (
+              <li key={`${item.toLowerCase()}-section`}>
                 <button 
-                  onClick={() => handleNavClick(item.section)}
+                  onClick={() => handleNavClick(`${item.toLowerCase()}-section`)}
                   className={`relative font-medium transition duration-300 cursor-pointer
-                  ${activeSection === item.section 
+                  ${activeSection === `${item.toLowerCase()}-section`
                     ? "text-gradient font-bold" 
                     : "text-white hover:text-cyan-300"
                   }`}
                 >
-                  {item.name}
-                  {activeSection === item.section && (
+                  {item}
+                  {activeSection === `${item.toLowerCase()}-section` && (
                     <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-600"></div>
                   )}
                 </button>
               </li>
             ))}
           </ul>
-
-          <button 
-            onClick={() => handleNavClick('contact-section')}
-            className={`${gradientBg} text-white font-medium py-2 px-4 rounded-md transition-all duration-300 hover:shadow-glow hover:scale-105`}
-          >
-            {nav.contact}
-          </button>
         </nav>
 
         {/* Mobile Menu Button */}
