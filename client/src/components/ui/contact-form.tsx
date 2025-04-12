@@ -2,8 +2,8 @@ import { useState } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
+// import { useMutation } from "@tanstack/react-query"; // Removed
+// import { apiRequest } from "@/lib/queryClient"; // Removed
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/lib/languageContext";
 import { Input } from "@/components/ui/input";
@@ -24,7 +24,8 @@ type ContactFormValues = z.infer<typeof contactFormSchema>;
 export function ContactForm() {
   const { toast } = useToast();
   const { t } = useLanguage();
-  
+  const [isSubmitting, setIsSubmitting] = useState(false); // Added for loading state
+
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
@@ -35,27 +36,52 @@ export function ContactForm() {
     },
   });
 
-  const contactMutation = useMutation({
-    mutationFn: (data: ContactFormValues) => 
-      apiRequest("POST", "/api/contact", data),
-    onSuccess: () => {
-      toast({
-        title: t.contact.form.success,
-        description: t.contact.form.successMessage,
+  // Removed contactMutation hook
+
+  async function onSubmit(data: ContactFormValues) {
+    setIsSubmitting(true);
+
+    const formData = new FormData();
+    formData.append("apikey", "e0b7487e-a955-4097-a44b-36f91f93b5a8"); // Added API Key
+    formData.append("name", data.name);
+    formData.append("email", data.email);
+    formData.append("subject", `Contact Form: ${data.subject}`); // Use form subject
+    formData.append("message", data.message);
+    formData.append("from_name", "Your Portfolio Site"); // Customize sender name if desired
+    // formData.append("redirect", "https://web3forms.com/success"); // Optional success redirect
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
       });
-      form.reset();
-    },
-    onError: (error) => {
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast({
+          title: t.contact.form.success,
+          description: t.contact.form.successMessage, // Or use result.message
+        });
+        form.reset();
+      } else {
+        console.error("Web3Forms Error:", result);
+        toast({
+          title: t.contact.form.error,
+          description: result.message || t.contact.form.errorMessage,
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error("Submission Error:", error);
       toast({
         title: t.contact.form.error,
-        description: error.message || t.contact.form.errorMessage,
+        description: t.contact.form.errorMessage, // Generic error
         variant: "destructive",
       });
-    },
-  });
-
-  function onSubmit(data: ContactFormValues) {
-    contactMutation.mutate(data);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -123,10 +149,10 @@ export function ContactForm() {
         
         <Button 
           type="submit" 
-          className="w-full" 
-          disabled={contactMutation.isPending}
+          className="w-full"
+          disabled={isSubmitting} // Use local state for disabling
         >
-          {contactMutation.isPending ? (
+          {isSubmitting ? ( // Use local state for loading indicator
             <>
               <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
               {t.contact.form.sending}
